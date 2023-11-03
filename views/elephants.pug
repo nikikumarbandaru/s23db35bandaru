@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  .container-fluid
+    .row
+      -
+        let results = [
+          { elephant_Habitat: 'Forest Habitat', elephant_Weight: 10000, elephant_Lifespan: '60 years', elephant_TuskLength: 8 },
+          { elephant_Habitat: 'Savanna', elephant_Weight: 4500, elephant_Lifespan: '60 years', elephant_TuskLength: 5 },
+          { elephant_Habitat: 'Desert', elephant_Weight: 5000, elephant_Lifespan: '70 years', elephant_TuskLength: 6 },
+          { elephant_Habitat: 'Wetland', elephant_Weight: 3000, elephant_Lifespan: '73 years', elephant_TuskLength: 3 }
+        ]
+      each item, index in results
+        .col-sm-2(onclick=`buy(${index})`)
+          div elephant_Habitat: #{item.elephant_Habitat}
+          div elephant_Weight: #{item.elephant_Weight}
+          div elephant_Lifespan: #{item.elephant_Lifespan}
+          div elephant_TuskLength: #{item.elephant_TuskLength}
+
+  script.
+    function buy(index){
+      alert(`You purchased item ${index}.`);
+    }
