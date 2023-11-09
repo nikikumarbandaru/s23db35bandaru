@@ -31,3 +31,16 @@ res.status(500);
 res.send(`{"error": ${err}}`);
 }
 };
+
+// VIEWS
+// Handle a show all view
+exports.elephant_view_all_Page = async function(req, res) {
+try{
+  theElephant = await Elephant.find();
+res.render('elephants', { title: 'Elephant Search Results', results: theElephant });
+}
+catch(err){
+res.status(500);
+res.send(`{"error": ${err}}`);
+}
+};
