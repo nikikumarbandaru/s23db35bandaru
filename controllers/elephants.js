@@ -20,14 +20,14 @@ exports.elephant_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: Elephant update PUT' + req.params.id);
 };
 
-// // List of all Elephants
-// exports.elephant_list = async function(req, res) {
-// try{
-// theElephant = await Elephant.find();
-// res.send(theElephant);
-// }
-// catch(err){
-// res.status(500);
-// res.send(`{"error": ${err}}`);
-// }
-// };
+// List of all Elephants
+exports.elephant_list = async function(req, res) {
+try{
+theElephant = await Elephant.find();
+res.send(theElephant);
+}
+catch(err){
+res.status(500);
+res.send(`{"error": ${err}}`);
+}
+};
