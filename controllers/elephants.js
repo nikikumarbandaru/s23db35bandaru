@@ -7,10 +7,27 @@ res.send('NOT IMPLEMENTED: Elephant list');
 exports.elephant_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: Elephant detail: ' + req.params.id);
 };
-// Handle Elephant create on POST.
-exports.elephant_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: Elephant create POST');
-};
+// Handle Costume create on POST.
+exports.elephant_create_post = async function(req, res) {
+  console.log(req.body)
+  let document = new Elephant();
+  // We are looking for a body, since POST does not have query parameters.
+  // Even though bodies can be in many different formats, we will be picky
+  // and require that it be a json object
+  // {"costume_type":"goat", "cost":12, "size":"large"}
+  document.elephant_Habitat = req.body.elephant_Habitat;
+  document.elephant_Weight = req.body.elephant_Weight;
+  document.elephant_Lifespan = req.body.elephant_Lifespan;
+  document.elephant_TuskLength = req.body.elephant_TuskLength;
+  try{
+  let result = await document.save();
+  res.send(result);
+  }
+  catch(err){
+  res.status(500);
+  res.send(`{"error": ${err}}`);
+  }
+  };
 // Handle Elephant delete form on DELETE.
 exports.elephant_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Elephant delete DELETE ' + req.params.id);
