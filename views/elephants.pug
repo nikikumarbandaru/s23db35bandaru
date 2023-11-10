@@ -5,8 +5,8 @@ block content
   .container-fluid
     .row
       -
-        let result = results
-      each item, index in result
+        let results = result
+      each item, index in results
         .col-sm-2(onclick=`buy(${index})`)
           div elephant_Habitat: #{item.elephant_Habitat}
           div elephant_Weight: #{item.elephant_Weight}

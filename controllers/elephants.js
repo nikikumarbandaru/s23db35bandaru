@@ -3,10 +3,17 @@ var Elephant = require("../models/elephants");
 exports.elephant_list = function(req, res) {
 res.send('NOT IMPLEMENTED: Elephant list');
 };
-// for a specific Elephant.
-exports.elephant_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: Elephant detail: ' + req.params.id);
-};
+// for a specific Costume.
+exports.elephant_detail = async function(req, res) {
+  console.log("detail" + req.params.id)
+  try {
+  result = await Elephant.findById( req.params.id)
+  res.send(result)
+  } catch (error) {
+  res.status(500)
+  res.send(`{"error": document for id ${req.params.id} not found`);
+  }
+  };
 // Handle Costume create on POST.
 exports.elephant_create_post = async function(req, res) {
   console.log(req.body)
@@ -61,3 +68,4 @@ res.status(500);
 res.send(`{"error": ${err}}`);
 }
 };
+
