@@ -35,14 +35,32 @@ exports.elephant_create_post = async function(req, res) {
   res.send(`{"error": ${err}}`);
   }
   };
+
 // Handle Elephant delete form on DELETE.
 exports.elephant_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Elephant delete DELETE ' + req.params.id);
 };
-// Handle Elephant update form on PUT.
-exports.elephant_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Elephant update PUT' + req.params.id);
-};
+
+// Handle Costume update form on PUT.
+exports.elephant_update_put = async function(req, res) {
+  console.log(`update on id ${req.params.id} with body
+  ${JSON.stringify(req.body)}`)
+  try {
+  let toUpdate = await Elephant.findById( req.params.id)
+  // Do updates of properties
+  if(req.body.elephant_Habitat) toUpdate.elephant_Habitat = req.body.elephant_Habitat;
+  if(req.body.elephant_Weight) toUpdate.elephant_Weight = req.body.elephant_Weight;
+  if(req.body.elephant_Lifespan) toUpdate.elephant_Lifespan = req.body.elephant_Lifespan;
+  if(req.body.elephant_TuskLength) toUpdate.elephant_TuskLength = req.body.elephant_TuskLength;
+  let result = await toUpdate.save();
+  console.log("Success " + result)
+  res.send(result)
+  } catch (err) {
+  res.status(500)
+  res.send(`{"error": ${err}: Update for id ${req.params.id}
+  failed`);
+  }
+  };
 
 // List of all Elephants
 exports.elephant_list = async function(req, res) {
@@ -68,4 +86,5 @@ res.status(500);
 res.send(`{"error": ${err}}`);
 }
 };
+
 
