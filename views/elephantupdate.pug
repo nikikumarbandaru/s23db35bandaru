@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h1= title
+  - let elephantid = toShow._id
+  - let elephantHabitat = toShow.elephant_Habitat
+  - let elephantWeight = toShow.elephant_Weight
+  - let elephantLifespan = toShow.elephant_Lifespan
+  - let elephantTuskLength = toShow.elephant_TuskLength
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{elephantid}
+
+  - let actionid = "/resource/elephants/" + elephantid
+  form(id='ElephantForm', action= actionid, method="PUT")
+    div.form-group
+      label.elephantAttr(for='elephant_Habitat') Elephant Habitat
+      input#elephant_Habitat(type='text', name='elephant_Habitat', value= elephant_Habitat)
+    div.form-group
+      label.elephantAttr(for='elephant_Weight') Elephant Weight
+      input#elephant_Weight(type='number', name='elephant_Weight', value= elephant_Weight)
+    div.form-group
+      label.elephantAttr(for='elephant_Lifespan') Elephant Lifespan
+      input#elephant_Lifespan(type='text', name='elephant_Lifespan', value= elephant_Lifespan)
+    div.form-group
+      label.elephantAttr(for='elephant_TuskLength') Elephant TuskLength
+      input#elephant_TuskLength(type='number', name='elephant_TuskLength', value= elephant_TuskLength)
+    input(type="submit")
+
+  script.
+    document.forms['ElephantForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show the user that the form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeeded");
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error );
+      });
+    });
