@@ -8,3 +8,5 @@ module.exports = router;
 router.get('/elephants/:id', elephant_controlers.elephant_detail);
 /* GET detail costume page */
 router.get('/detail', elephant_controlers.elephant_view_one_Page);
+/* GET create costume page */
+router.get('/create', elephant_controlers.elephant_create_Page);
