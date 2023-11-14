@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+  - let elephantHabitat = toShow.elephant_Habitat
+  - let elephantWeight = toShow.elephant_Weight
+  - let elephantLifespan = toShow.elephant_Lifespan
+  - let elephantTuskLength = toShow.elephant_TuskLength
+  div
+    div.row
+      div(class='elephantAttr mr-3') elephant_Habitat is:
+      div #{elephantHabitat}
+    div.row
+      div(class='elephantAttr mr-3') elephant_Weight is:
+      div #{elephantWeight}
+    div.row
+      div(class='elephantAttr mr-3') elephant_Lifespan is:
+      div #{elephantLifespan}
+    div.row
+      div(class='elephantAttr mr-3') elephant_TuskLength is:
+      div #{elephantTuskLength}
