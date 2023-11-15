@@ -1,25 +1,34 @@
 extends layout
 
 block content
-  h1= title
-  form(id='ElephantForm', action="/resource/elephants", method="POST")
-    div.form-group
-      label.elephantAttr(for='elephant_Habitat') Elephant Habitat
-      input#elephant_Habitat(type='text', name='elephant_Habitat')
-    div.form-group
-      label.elephantAttr(for='elephant_Weight') Elephant Weight
-      input#elephant_Weight(type='number', name='elephant_Weight')
-    div.form-group
-      label.elephantAttr(for='elephant_Lifespan') Elephant Lifespan
-      input#elephant_Lifespan(type='text', name='elephant_Lifespan')
-    div.form-group
-      label.elephantAttr(for='elephant_TuskLength') Elephant TuskLength
-      input#elephant_TuskLength(type='number', name='elephant_TuskLength')
-    input(type="submit")
+  .container
+    h1(style='font-family: "Arial", sans-serif; color: #333;')= title
+
+    form#ElephantForm(action="/resource/elephants", method="POST", style='background-color: #f2f2f2; padding: 20px; border-radius: 10px;')
+      .form-group
+        label.elephantAttr(for='elephant_Habitat') Elephant Habitat
+        input#elephant_Habitat.form-control(type='text', name='elephant_Habitat', placeholder='Enter Habitat', required)
+      
+      .form-group
+        label.elephantAttr(for='elephant_Weight') Elephant Weight
+        input#elephant_Weight.form-control(type='number', name='elephant_Weight', placeholder='Enter Weight', required)
+      
+      .form-group
+        label.elephantAttr(for='elephant_Lifespan') Elephant Lifespan
+        input#elephant_Lifespan.form-control(type='text', name='elephant_Lifespan', placeholder='Enter Lifespan', required)
+      
+      .form-group
+        label.elephantAttr(for='elephant_TuskLength') Elephant Tusk Length
+        input#elephant_TuskLength.form-control(type='number', name='elephant_TuskLength', placeholder='Enter Tusk Length', required)
+      
+      .form-group
+        input.btn.btn-primary(type="submit", value="Submit")
+      
     script.
-      document.forms['ElephantForm'].addEventListener('submit', (event) => {
+      document.getElementById('ElephantForm').addEventListener('submit', (event) => {
         event.preventDefault();
-        // TODO do something here to show user that the form is being submitted
+        // TODO: Show user that the form is being submitted
+        
         fetch(event.target.action, {
           method: 'POST',
           body: new URLSearchParams(new FormData(event.target)) // event.target is the form
@@ -27,9 +36,9 @@ block content
           return resp.json(); // or resp.text() or whatever the server sends
         }).then((body) => {
           alert("Save succeeded");
-          // TODO handle body
+          // TODO: Handle response body
         }).catch((error) => {
-          // TODO handle error
+          // TODO: Handle error
           alert("Save failed " + error);
         });
       });
