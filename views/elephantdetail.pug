@@ -2,25 +2,27 @@ extends layout
 
 block content
   h1= title
-
-  - let elephantid = toShow._id
-  - let elephantHabitat = toShow.elephant_Habitat
-  - let elephantWeight = toShow.elephant_Weight
-  - let elephantLifespan = toShow.elephant_Lifespan
-  - let elephantTuskLength = toShow.elephant_TuskLength
-  div
-    div.row
-      div(class='elephantAttr mr-3') elephant ID is:
-      div #{elephantid}
-    div.row
-      div(class='elephantAttr mr-3') elephant_Habitat is:
-      div #{elephantHabitat}
-    div.row
-      div(class='elephantAttr mr-3') elephant_Weight is:
-      div #{elephantWeight}
-    div.row
-      div(class='elephantAttr mr-3') elephant_Lifespan is:
-      div #{elephantLifespan}
-    div.row
-      div(class='elephantAttr mr-3') elephant_TuskLength is:
-      div #{elephantTuskLength}
+  if (toShow == null)
+    h2 No instance to detail
+  else
+    - let elephantid = toShow._id
+    - let elephantHabitat = toShow.elephant_Habitat
+    - let elephantWeight = toShow.elephant_Weight
+    - let elephantLifespan = toShow.elephant_Lifespan
+    - let elephantTuskLength = toShow.elephant_TuskLength
+    div
+      div.row
+        div(class='elephantAttr mr-3') elephant ID is:
+          div #{elephantid}
+      div.row
+        div(class='elephantAttr mr-3') elephant_Habitat is:
+          div #{elephantHabitat}
+      div.row
+        div(class='elephantAttr mr-3') elephant_Weight is:
+          div #{elephantWeight}
+      div.row
+        div(class='elephantAttr mr-3') elephant_Lifespan is:
+          div #{elephantLifespan}
+      div.row
+        div(class='elephantAttr mr-3') elephant_TuskLength is:
+          div #{elephantTuskLength}
