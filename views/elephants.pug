@@ -4,16 +4,20 @@ block content
   h1= title
   .container-fluid
     .row
-      -
-        let results = result
-      each item, index in results
+      - let result = results
+      each item, index in result
         .col-sm-2(onclick=`buy(${index})`)
           div elephant_Habitat: #{item.elephant_Habitat}
           div elephant_Weight: #{item.elephant_Weight}
           div elephant_Lifespan: #{item.elephant_Lifespan}
           div elephant_TuskLength: #{item.elephant_TuskLength}
+          - let destination = `dispatch(\"/elephants/update?id=${item._id}\")`
+          button.btn(class="btn-primary ml-1", onclick=destination) Update
 
   script.
     function buy(index){
       alert(`You purchased item ${index}.`);
+    }
+    function dispatch(path){
+      window.location.href = path;
     }
