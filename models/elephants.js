@@ -9,7 +9,13 @@ elephant_Habitat:
 },
 elephant_Weight: Number,
 elephant_Lifespan: String,
-elephant_TuskLength: Number
+elephant_TuskLength:
+{
+    type: Number,
+    required: true,
+    min: 1,
+    max: 10,
+}
 })
 module.exports = mongoose.model("Elephant", elephantSchema)
 
