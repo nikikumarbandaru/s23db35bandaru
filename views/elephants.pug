@@ -4,6 +4,8 @@ block content
   h1= title
   .container-fluid
     .row
+      - let destcreate = `dispatch(\"/elephants/create\")`
+      button.btn(class="btn-primary ml-1", onclick=destcreate) Create New Elephant
       - let result = results
       each item, index in result
         .col-sm-2(onclick=`buy(${index})`)
@@ -13,6 +15,10 @@ block content
           div elephant_TuskLength: #{item.elephant_TuskLength}
           - let destination = `dispatch(\"/elephants/update?id=${item._id}\")`
           button.btn(class="btn-primary ml-1", onclick=destination) Update
+          - let destdetail = `dispatch(\"/elephants/detail?id=${item._id}\")`
+          button.btn(class="btn-info ml-1", onclick=destdetail) Detail
+          - let destdelete = `dispatch(\"/elephants/delete?id=${item._id}\")`
+          button.btn(class="btn-danger ml-1", onclick=destdelete) Delete
 
   script.
     function buy(index){
