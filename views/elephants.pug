@@ -2,10 +2,10 @@ extends layout
 
 block content
   h1= title
+  - let destcreate = `dispatch(\"/elephants/create\")`
+  button.btn(class="btn-primary ml-1", onclick=destcreate) Create New Elephant
   .container-fluid
-    .row
-      - let destcreate = `dispatch(\"/elephants/create\")`
-      button.btn(class="btn-primary ml-1", onclick=destcreate) Create New Elephant
+    .row      
       - let result = results
       each item, index in result
         .col-sm-2(onclick=`buy(${index})`)
